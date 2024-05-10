@@ -16,6 +16,7 @@ bool failsafe = false;
 bool enabled = false;
 long t = 0;
 int state = -1;  
+int kill = 1000;
 /*
 0: arming state
 1: sending signals
@@ -41,15 +42,15 @@ void loop() {
     // throttle = channelValues[4];
     if (state == -1){
       throttle = 885;
-      Arm(false);
-      arming = 1000;      
+      Arm(false);     
       data.ch[0] = (ChannelMath(roll));
       data.ch[1] = (ChannelMath(tman));
       data.ch[2] = (ChannelMath(throttle));
       data.ch[3] = (ChannelMath(yaw));
       data.ch[4] = (ChannelMath(arming));
       data.ch[7] = (ChannelMath(1881)); //mutes beeper
-      data.ch[10] = (ChannelMath(1700));
+      data.ch[10] = (ChannelMath(2000));
+      data.ch[12] = (ChannelMath(1000));
       if(millis() - t > 10000) //sending init data for 10 seconds
       {
         t = millis();
@@ -59,7 +60,6 @@ void loop() {
     else if (state == 0){
       //set arming signals
       Arm(true);
-      arming = 1500;
       data.ch[2] = (ChannelMath(throttle));
       data.ch[4] = (ChannelMath(arming));
       data.ch[10] = (ChannelMath(1700));
@@ -76,20 +76,23 @@ void loop() {
         tman = 1500;
         yaw = 1500;
         throttle = 885;
-        
+        kill = 1000;
       }  
       else if(millis() - t < 15000)
       {    
         roll = 1500;
         tman = 1500;
         yaw = 1500;
-        throttle = 1300;
+        throttle = 1400;
+        kill = 1000;
       }
       else{
         roll = 1500;
         tman = 1500;
         yaw = 1500;
-        throttle = 885;        
+        throttle = 885;  
+        Arm(false);      
+        kill = 1700;
       }
       
       data.ch[0] = (ChannelMath(roll));
@@ -99,10 +102,10 @@ void loop() {
       data.ch[4] = (ChannelMath(arming));       
       data.ch[17] = ((988-879.7)/.6251);
       data.ch[16] = ((988-879.7)/.6251);
-      data.ch[10] = (ChannelMath(1700));
+      data.ch[10] = (ChannelMath(2000));
+      data.ch[12] = (ChannelMath(kill));
     } // end state 1
     // --- back to the base loop code ---  
-      data.ch[10] = (ChannelMath(1700));
     /* Grab the received data */
     sbusInput = sbus_rx.data();
     // data = sbus_rx.data(); THIS STUPID LINE OF CODE MADE ME SPEND LIKE 2.5 WEEKS CHASING GEESE WILDLY
@@ -163,7 +166,7 @@ void Arm(bool armmed)
 {
   if(armmed)
   {
-    arming = 1500;
+    arming = 1800;
   }
   else if(!armmed)
   {
