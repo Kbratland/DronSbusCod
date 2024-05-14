@@ -62,7 +62,7 @@ void loop() {
       Arm(true);
       data.ch[2] = (ChannelMath(throttle));
       data.ch[4] = (ChannelMath(arming));
-      data.ch[10] = (ChannelMath(1700));
+      data.ch[10] = (ChannelMath(2000));
       if (millis() - t > 10000){
         state = 1;
         t = millis();
@@ -70,15 +70,15 @@ void loop() {
     }
     else if (state == 1){
       //Roll Ch 0, Pitch Ch 1, Yaw Ch 3, Throttle Ch 2, Arm Ch 4
-      if(millis() - t < 5000)
+      if(millis() - t < 3000)
       {
         roll = 1500;
         tman = 1500;
         yaw = 1500;
-        throttle = 885;
+        throttle = 1250;
         kill = 1000;
       }  
-      else if(millis() - t < 15000)
+      else if(millis() - t < 6000)
       {    
         roll = 1500;
         tman = 1500;
@@ -86,15 +86,20 @@ void loop() {
         throttle = 1400;
         kill = 1000;
       }
+      else if(millis() - t < 9000){
+        roll = 1500;
+        tman = 1500;
+        yaw = 1500;
+        throttle = 1250;        
+        kill = 1000;
+      }
       else{
         roll = 1500;
         tman = 1500;
         yaw = 1500;
-        throttle = 885;  
-        Arm(false);      
+        throttle = 885;        
         kill = 1700;
       }
-      
       data.ch[0] = (ChannelMath(roll));
       data.ch[1] = (ChannelMath(tman));
       data.ch[2] = (ChannelMath(throttle));
@@ -132,21 +137,21 @@ void loop() {
     Serial.print("State is: ");
     Serial.println(state);
     // ChangeThrottle();
-    Serial.println("Input");
-   for(int i = 0; i < sbusInput.NUM_CH; i++)
-    {
-      Serial.print(i);
-      Serial.print(": ");
-      if(/*data.ch[i] != 0*/ false)
-      {
-        Serial.println((.6251*(sbusInput.ch[i]))+879.7);
-      }
-      else
-      {
-        Serial.println(sbusInput.ch[i]);
-      }
-      delay(100);
-    }
+    // Serial.println("Input");
+  //  for(int i = 0; i < sbusInput.NUM_CH; i++)
+  //   {
+  //     Serial.print(i);
+  //     Serial.print(": ");
+  //     if(/*data.ch[i] != 0*/ false)
+  //     {
+  //       Serial.println((.6251*(sbusInput.ch[i]))+879.7);
+  //     }
+  //     else
+  //     {
+  //       Serial.println(sbusInput.ch[i]);
+  //     }
+  //     delay(100);
+  //   }
     // data.ch[4] = ((500-879.7)/.6251);
     // data.ch[5] = 100.5555;
     // Serial.println(data);
