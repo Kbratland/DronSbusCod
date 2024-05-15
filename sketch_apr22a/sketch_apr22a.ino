@@ -17,6 +17,7 @@ bool enabled = false;
 long t = 0;
 int state = -1;  
 int kill = 1000;
+int LEDpin = 13;
 /*
 0: arming state
 1: sending signals
@@ -33,6 +34,7 @@ void setup() {
   tman = 1500;
   yaw = 1500;
   throttle = 880;
+  pinMode(LEDpin,OUTPUT);
 }
 
 void loop() {
@@ -83,7 +85,7 @@ void loop() {
         roll = 1500;
         tman = 1500;
         yaw = 1500;
-        throttle = 1400;
+        throttle = 1350;
         kill = 1000;
       }
       else if(millis() - t < 9000){
@@ -131,7 +133,7 @@ void loop() {
         {
           Serial.println(data.ch[i]);
         }
-        delay(100);
+        delay(50);
     } // close printing for
     Serial.println("-----");
     Serial.print("State is: ");
@@ -161,11 +163,27 @@ void loop() {
     // Serial.print("\t");
     // Serial.println(data.failsafe);
     /* Set the SBUS TX data to the received data */
+    if(state == -1){
+      digitalWrite(LEDpin,HIGH);
+      delay(1000);
+      digitalWrite(LEDpin,LOW);   
+    }
+    else if(state == 0 ){
+      digitalWrite(LEDpin,HIGH);
+      delay(150);
+      digitalWrite(LEDpin,LOW);
+    }
+    else{
+      digitalWrite(LEDpin,HIGH);
+    }
+    if(kill == 1700){
+      digitalWrite(LEDpin,LOW);
+    }
     sbus_tx.data(data);
     // Serial.println(data);
     /* Write the data to the servos */
     sbus_tx.Write();
-    delay(100);
+    delay(50);
 }
 void Arm(bool armmed)
 {
