@@ -15,9 +15,11 @@ int arming;
 bool failsafe = false;
 bool enabled = false;
 long t = 0;
+long b = 0;
 int state = -1;  
 int kill = 1000;
 int LEDpin = 13;
+int compare = 1000;
 /*
 0: arming state
 1: sending signals
@@ -27,6 +29,7 @@ void setup() {
   Serial.begin(115200);
   while (!Serial) {}
   t = millis();  
+  b = millis();
   /* Begin the SBUS communication */
   sbus_rx.Begin();
   sbus_tx.Begin();
@@ -43,6 +46,7 @@ void loop() {
     // yaw = channelValues[3];
     // throttle = channelValues[4];
     if (state == -1){
+      compare = 1000;
       throttle = 885;
       Arm(false);     
       data.ch[0] = (ChannelMath(roll));
@@ -60,6 +64,7 @@ void loop() {
       }
     }
     else if (state == 0){
+      compare = 100;
       //set arming signals
       Arm(true);
       data.ch[2] = (ChannelMath(throttle));
@@ -163,15 +168,13 @@ void loop() {
     // Serial.print("\t");
     // Serial.println(data.failsafe);
     /* Set the SBUS TX data to the received data */
-    if(state == -1){
-      digitalWrite(LEDpin,HIGH);
-      delay(1000);
-      digitalWrite(LEDpin,LOW);   
-    }
-    else if(state == 0 ){
-      digitalWrite(LEDpin,HIGH);
-      delay(150);
+    if(state == -1 || state == 0){
       digitalWrite(LEDpin,LOW);
+      if(millis()-b<= compare){
+        digitalWrite(LEDpin,HIGH);
+        compare += compare;
+      }
+      // b = millis();
     }
     else{
       digitalWrite(LEDpin,HIGH);
@@ -179,6 +182,9 @@ void loop() {
     if(kill == 1700){
       digitalWrite(LEDpin,LOW);
     }
+
+    // digitalWrite(LEDpin,HIGH);
+    // Serial.print(b);
     sbus_tx.data(data);
     // Serial.println(data);
     /* Write the data to the servos */
