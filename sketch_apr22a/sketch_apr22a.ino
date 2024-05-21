@@ -39,7 +39,7 @@ void setup() {
   tman = 1500;
   yaw = 1500;
   throttle = 880;
-  pinMode(LEDpin,OUTPUT);
+  pinMode(LED_BUILTIN, OUTPUT);
 }
 
 void loop() {
@@ -103,12 +103,12 @@ void loop() {
   } // end state 1
   if(state == 2)
   {
-    if((millis() - rampUpTime >= 1000) && (killswitch < 1500))
+    if((millis() - rampUpTime >= 1000) && (killswitch < 1500) && (throttle < 1150))
     {
       throttle += 50;
       rampUpTime = millis();
     }
-    if(throttle >= 1150)
+    if((throttle >= 1150) && (millis() - rampUpTime >= 2000))
     {
       killswitch = 1700;
       failsafe = 2000;
@@ -187,12 +187,12 @@ void LightSRLatch()
 {
   if(lightOn)
   {
-    digitalWrite(LEDpin, LOW);
+    digitalWrite(LED_BUILTIN, LOW);
     lightOn = false;    
   }
   else if(!lightOn)
   {
-    digitalWrite(LEDpin, HIGH);
+    digitalWrite(LED_BUILTIN, HIGH);
     lightOn = true;    
   }
 }
