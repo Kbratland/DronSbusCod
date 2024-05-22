@@ -169,7 +169,6 @@ double ChannelMath(int setpoint) // Sets Sbus data to proper point for conversio
 {
   return((setpoint - 879.7)/.6251);
 }
-
 void LightSRLatch() // Blinker
 {
   if(lightOn)
