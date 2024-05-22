@@ -8,6 +8,41 @@ bfs::SbusTx sbus_tx(&Serial1);
 /* SBUS data */
 bfs::SbusData data;
 bfs::SbusData sbusInput;
+/*
+1.Internal voltage in volts (not usable).
+
+2.Valtage sensor in volts (Voltage type).
+
+3.If baro sensor is avaliable then return temperature from baro sensor in °C else return temperature from gyro sensor in °C (Temperatyre type).
+
+4.Status (Rpm type).
+
+5.Course in degree (Rpm type).
+
+6.Current in ampers (Voltage type).
+
+7.Altitude in meters (Voltage type).
+
+8.Direction to home in degree (Rpm type).
+
+9.Distance to home in meters(Rpm type).
+
+10.GPS course in degree (Rpm type).
+
+11.GPS altitude in meters (Rpm type).
+
+12.Second part of Lattitude (Rpm type), for example 5678 (-12.3456789 N).
+
+13.Second part of Longitude (Rpm type), for example 6789 (-123.4567891 E).
+
+14.First part of Lattitude (Voltage type), for example -12.45 (-12.3456789 N).
+
+15.First part of Longitude (Voltage type), for example -123.45 (-123.4567890 E).
+
+16.GPS speed in km/h (Rpm type).
+*/
+
+
 
 iBus receiver(Serial1, MAX_CHANNELS);
 
