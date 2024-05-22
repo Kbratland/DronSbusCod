@@ -41,9 +41,6 @@ bfs::SbusData sbusInput;
 
 16.GPS speed in km/h (Rpm type).
 */
-
-
-
 iBus receiver(Serial1, MAX_CHANNELS);
 
 // int channelValues[] = {1500, 1500, 1500, 885, 1500, 1500, 1500};
