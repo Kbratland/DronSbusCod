@@ -1,7 +1,7 @@
 #include "sbus.h"
 
 #define IBUS_BUFFSIZE 32    // Max iBus packet size (2 byte header, 14 channels x 2 bytes, 2 byte checksum)
-#define IBUS_MAXCHANNELS 10 // My TX only has 10 channels, no point in polling the rest
+#define IBUS_MAXCHANNELS 14 // Max iBus Channels
 
 /* SBUS object, writing SBUS */
 bfs::SbusTx sbus_tx(&Serial1);
@@ -14,7 +14,8 @@ bfs::SbusData sbusInput;
 static uint8_t ibusIndex = 0;
 static uint8_t ibus[IBUS_BUFFSIZE] = {0};
 static uint16_t rcValue[IBUS_MAXCHANNELS];
-static boolean rxFrameDone;
+static bool rxFrameDone;
+long telemetry[14] = {};
 int pitch; // pitch is broken?
 int roll;
 int yaw;
@@ -189,7 +190,7 @@ void PrintChannels()
   Serial.println(state +"/n" +"-----");
 }
 
-void readRx()
+void ReadRx()
 {
   rxFrameDone = false;
   
