@@ -1,7 +1,7 @@
 #include "sbus.h"
+#include "iBus.h"
 
-#define IBUS_BUFFSIZE 32    // Max iBus packet size (2 byte header, 14 channels x 2 bytes, 2 byte checksum)
-#define IBUS_MAXCHANNELS 14 // Max iBus Channels
+#define MAX_CHANNELS 18 // Max iBus Channels
 
 /* SBUS object, writing SBUS */
 bfs::SbusTx sbus_tx(&Serial1);
@@ -9,13 +9,10 @@ bfs::SbusTx sbus_tx(&Serial1);
 bfs::SbusData data;
 bfs::SbusData sbusInput;
 
+iBus receiver(Serial1, MAX_CHANNELS);
 
 // int channelValues[] = {1500, 1500, 1500, 885, 1500, 1500, 1500};
-static uint8_t ibusIndex = 0;
-static uint8_t ibus[IBUS_BUFFSIZE] = {0};
-static uint16_t rcValue[IBUS_MAXCHANNELS];
-static bool rxFrameDone;
-long telemetry[14] = {};
+long telemetry[18] = {};
 int pitch; // pitch is broken?
 int roll;
 int yaw;
@@ -43,6 +40,7 @@ void setup() {
   t = millis();  
   blinkTime = millis();
   /* Begin the SBUS communication */
+  receiver.begin();
   sbus_rx.Begin();
   sbus_tx.Begin();
 
@@ -56,7 +54,7 @@ void setup() {
 
 void loop() 
 {
-  ReadRx();
+  receiver.process();
   if (state == -1){
     compare = 1000;       
     throttle = 885;
@@ -119,7 +117,7 @@ void loop()
   else{
     digitalWrite(LEDpin,HIGH);
   }
-  delay(100);  
+  delay(10);  
 }
 
 
@@ -172,6 +170,10 @@ void PrintChannels()
 {
   Serial.println("lost frame data: " +data.lost_frame +"/n");
   Serial.println("failsafe data: " +data.failsafe +"/n");
+  Serial.println("Input");
+  for(byte i = 1; i <= MAX_CHANNELS; i++){  // get channel values starting from 1
+    Serial.println(i +": " +receiver.get(i) +"/n");
+  }
   Serial.println("Output");
   for (int8_t i = 0; i < data.NUM_CH; i++){ //print data we're sending.
       Serial.print(i);
@@ -187,50 +189,5 @@ void PrintChannels()
   } // close printing for
   Serial.println("-----");
   Serial.print("State is: ");
-  Serial.println(state +"/n" +"-----");
-}
-
-void ReadRx()
-{
-  rxFrameDone = false;
-  
-  if (Serial.available())
-  {
-    uint8_t val = Serial.read();
-    // Look for 0x2040 as start of packet
-    if (ibusIndex == 0 && val != 0x20)
-    {
-      ibusIndex = 0;
-      return;
-    }
-    if (ibusIndex == 1 && val != 0x40) 
-    {
-      ibusIndex = 0;
-      return;
-    }
-
-    if (ibusIndex == IBUS_BUFFSIZE)
-    {
-      ibusIndex = 0;
-      int high=3;
-      int low=2;
-      for(int i=0;i<IBUS_MAXCHANNELS; i++)
-      {
-        //left shift away the first 8 bits of the first byte and add the whole value of the previous one
-        rcValue[i] = (ibus[high] << 8) + ibus[low];
-        Serial.print(rcValue[i]);
-        Serial.print("     ");
-        high += 2;
-        low += 2;
-      }
-      Serial.println();
-      rxFrameDone = true;
-      return;
-    }
-    else
-    {
-      ibus[ibusIndex] = val;
-      ibusIndex++;
-    }
-  }
+  Serial.println(state +"/n" +"-----" +"/n");
 }
