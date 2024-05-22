@@ -1,5 +1,5 @@
-#include "sbus.h"
-#include "iBus.h"
+#include "sbus.h" //https://github.com/bolderflight/sbus/tree/main
+#include "iBus.h" //https://github.com/VICLER/iBus/tree/master/examples
 
 #define MAX_CHANNELS 18 // Max iBus Channels
 
