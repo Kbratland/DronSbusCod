@@ -1,0 +1,5 @@
+{
+    "board": "arduino:samd:nano_33_iot",
+    "port": "COM1",
+    "sketch": "sketch_apr22a\\sketch_apr22a.ino"
+}
