@@ -20,26 +20,26 @@
     <summary>Drone Building Instructions</summary>
     <details>
         <summary>
-            *Frame Construction
+            Frame Construction
         </summary>
     </details>
     <details>
         <summary>
-            *Wiring!
+            Wiring!
         </summary>
     </details>
     <details>
         <summary>
-            *Code installation and Configuration
+            Code installation and Configuration
         </summary>
             <details>
                 <summary>
-                    *Code
+                    Code
                 </summary>
             </details>
             <details>
                 <summary>
-                    *Configuration
+                    Configuration
                 </summary>
             </details>
     </details>
