@@ -26,11 +26,11 @@
     </details>
     <details>
         <summary>Code installation and Configuration</summary>
-        <details>
-            <summary>Code</summary>
-        </details>
-        <details>
-            <summary>Configuration</summary>
-        </details>
+            <details>
+                <summary>Code</summary>
+            </details>
+            <details>
+                <summary>Configuration</summary>
+            </details>
     </details>
 </details>
