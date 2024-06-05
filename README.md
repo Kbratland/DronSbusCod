@@ -21,10 +21,8 @@
     <summary>Drone Building Instructions
     </summary>
     <details>
-        <summary>
-            Frame Construction
-            <a href="https://github.com/Kbratland/DronSbusCod/blob/main/FrameConstruction.md">Installation Instructions</a>
-        </summary>
+        <summary>Frame Construction</summary>
+        <a href="https://github.com/Kbratland/DronSbusCod/blob/main/FrameConstruction.md">Installation Instructions</a>
     </details>
     <details>
         <summary>Wiring!</summary>
