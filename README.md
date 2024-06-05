@@ -17,7 +17,7 @@
 
 </details>
 
----<details>
+<details>
     <summary>Drone Building Instructions</summary>
     <details>
         <summary>
@@ -25,23 +25,15 @@
         </summary>
     </details>
     <details>
-        <summary>     
-            Wiring!    
-        </summary>
+        <summary>Wiring!</summary>
     </details>
     <details>
-        <summary>    
-            Code installation and Configuration            
-        </summary>
+        <summary>Code installation and Configuration</summary>
             <details>
-                <summary>               
-                    Code                   
-                </summary>
+                <summary>Code</summary>
             </details>
             <details>
-                <summary>
-                    Configuration
-                </summary>
+                <summary>Configuration</summary>
             </details>
     </details>
 </details>
