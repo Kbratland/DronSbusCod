@@ -23,10 +23,12 @@
     <details>
         <summary>
             Frame Construction
+            <a href="https://github.com/Kbratland/DronSbusCod/blob/main/FrameConstruction.md">Installation Instructions</a>
         </summary>
     </details>
     <details>
         <summary>Wiring!</summary>
+        <a href="https://github.com/Kbratland/DronSbusCod/blob/main/Wiring.md">Installation Instructions</a>
     </details>
     <details>
         <summary>Code installation and Configuration</summary>
@@ -36,6 +38,7 @@
             </details>
             <details>
                 <summary>Configuration</summary>
+                <a href="https://github.com/Kbratland/DronSbusCod/blob/main/Configuration.md">Installation Instructions</a>
             </details>
     </details>
 </details>
