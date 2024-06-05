@@ -40,10 +40,8 @@
 
 <details>
 <summary>head 1</summary>
-
     <details>
     <summary>head 1.1</summary>
     content
-    </details>
-
+    </details> 
 </details>
