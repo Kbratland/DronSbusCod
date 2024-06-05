@@ -43,10 +43,10 @@
         <summary>Parts Needed:</summary>
         -<a href="https://www.digikey.com/en/products/detail/jst-sales-america-inc/A08SR08SR30K203A/9922207">8-Pin JST Cable </a> <br>
         -<a href="https://holybro.com/collections/autopilot-flight-controllers/products/kakute-f4-v2-4">Kakute F4 v2.4 Flight Controller</a> <br>
-        -<a href="">BOTTOM TEXT</a> <br>
-        -<a href="">BOTTOM TEXT</a> <br>
-        -<a href="">BOTTOM TEXT</a> <br>
-        -<a href="">BOTTOM TEXT</a> <br>
+        -<a href="https://holybro.com/collections/motors/products/ripper-1404-3800kv-ultralight-brushless-motor?variant=41563378679997">Ripper Motor Four-pack</a> <br>
+        -<a href="https://www.amazon.com/1500mAh-Graphene-Quadcopter-Helicopter-Airplane/dp/B09CTS2KY6/ref=sr_1_2_sspa?crid=FK27DSRZSRYX&keywords=XT60+8s+drone+battery&qid=1697687364&sprefix=xt60+8s+drone+battery%2Caps%2C135&sr=8-2-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1">Ovonic Lipo Battery</a> <br>
+        -<a href="https://holybro.com/collections/autopilot-peripherals/products/tekko32-f4-4in1-mini-50a-esc">Tekko-32 Motor Controller</a> <br>
+        -<a href="https://holybro.com/collections/power-modules-pdbs/products/pm02-v3-12s-power-module">Battery Cable Adapter</a> <br>
         -<a href="">BOTTOM TEXT</a> <br>
         -<a href="">BOTTOM TEXT</a> <br>
         -<a href="">BOTTOM TEXT</a> <br>
