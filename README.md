@@ -38,17 +38,12 @@
     </details>
 </details>
 
+<details>
+<summary>head 1</summary>
 
-<ul id="dropdown-menu">
-    <li>Menu 1
-        <ul class="submenu">
-            <li>Submenu 1-1
-                <ul class="submenu">
-                    <li>Sub-submenu 1-1-1</li>
-                </ul>
-            </li>
-            <li>Submenu 1-2</li>
-        </ul>
-    </li>
-    ...
-</ul>
+    <details>
+    <summary>head 1.1</summary>
+    content
+    </details>
+
+</details>
