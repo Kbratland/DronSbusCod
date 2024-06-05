@@ -32,7 +32,7 @@
         <summary>Code installation and Configuration</summary>
             <details>
                 <summary>Code</summary>
-                We just updated our [Docs Contribution Guide](https://www.codecademy.com/pages/contribute-docs)!
+                a href="[url](https://github.com/Kbratland/DronSbusCod/edit/main/README.md)">link text</a>
             </details>
             <details>
                 <summary>Configuration</summary>
