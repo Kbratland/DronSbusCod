@@ -17,7 +17,7 @@
 
 </details>
 
-*<details>
+---<details>
     <summary>Drone Building Instructions</summary>
     <details>
         <summary>
