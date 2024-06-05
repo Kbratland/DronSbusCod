@@ -41,16 +41,16 @@
     </details>
     <details>
         <summary>Parts Needed:</summary>
-        -<a href="https://www.digikey.com/en/products/detail/jst-sales-america-inc/A08SR08SR30K203A/9922207">8-Pin JST Cable </a> 
-        -<a href="https://holybro.com/collections/autopilot-flight-controllers/products/kakute-f4-v2-4">Kakute F4 v2.4 Flight Controller</a> 
-        -<a href="">BOTTOM TEXT</a> 
-        -<a href="">BOTTOM TEXT</a> 
-        -<a href="">BOTTOM TEXT</a> 
-        -<a href="">BOTTOM TEXT</a> 
-        -<a href="">BOTTOM TEXT</a> 
-        -<a href="">BOTTOM TEXT</a> 
-        -<a href="">BOTTOM TEXT</a> 
-        -<a href="">BOTTOM TEXT</a> 
+        -<a href="https://www.digikey.com/en/products/detail/jst-sales-america-inc/A08SR08SR30K203A/9922207">8-Pin JST Cable </a> <br>
+        -<a href="https://holybro.com/collections/autopilot-flight-controllers/products/kakute-f4-v2-4">Kakute F4 v2.4 Flight Controller</a> <br>
+        -<a href="">BOTTOM TEXT</a> <br>
+        -<a href="">BOTTOM TEXT</a> <br>
+        -<a href="">BOTTOM TEXT</a> <br>
+        -<a href="">BOTTOM TEXT</a> <br>
+        -<a href="">BOTTOM TEXT</a> <br>
+        -<a href="">BOTTOM TEXT</a> <br>
+        -<a href="">BOTTOM TEXT</a> <br>
+        -<a href="">BOTTOM TEXT</a> <br>
     </details>
 </details>
 
