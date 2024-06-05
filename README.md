@@ -51,7 +51,6 @@
         <a href="">BOTTOM TEXT</a>
         <a href="">BOTTOM TEXT</a>
         <a href="">BOTTOM TEXT</a>
-        
     </details>
 </details>
 
