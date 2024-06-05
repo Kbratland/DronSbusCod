@@ -28,15 +28,19 @@ double roll;
 double yaw;
 double throttle;
 int arming;
+int updateTime = 0;
 int connectTime = 0;
 bool enabled = false;
 long t = 0;
+bool isArmed = false;
+bool isFailsafed = false;
+bool isKilled = false;
 long blinkTime = 0;
 int droneState = -1;  
 int killswitch = 1000;
 int failsafe = 1000;
 int LEDpin = 13;
-int compare = 1000;
+int compare = 10;
 bool lightOn = false;
 int rampUpTime = 0;
 //KOOONNNEEER
@@ -60,7 +64,7 @@ struct BSIPMessage{
 
 void setup() {
   //Initialize serial and wait for port to open:
-  Serial.begin(115200);
+  Serial.begin(9600);
   Serial.println("Testing.");
   // set the LED as output
   pinMode(LED_BUILTIN, OUTPUT);
@@ -73,8 +77,9 @@ void setup() {
 }//end setup
 
 void loop() {
-  if(status != WL_CONNECTED && bootComplete)
+  if(WiFi.status() == WL_CONNECTION_LOST)
   {
+    wifiState = 1;
     wifiLostConnection = true;
   }
   if(wifiLostConnection)
@@ -86,10 +91,10 @@ void loop() {
     failsafe = 1000;
   }
   //MillisStuff();
-  DroneSystems();
-  Listen();
-  DataSetSend();
   WifiConnection();
+  Listen();
+  DroneSystems();
+  DataSetSend();
   if (wifiState == 1 && droneState == 1){
     Udp.beginPacket(Udp.remoteIP(), Udp.remotePort());
     Udp.write("State: 1 -> 2");
@@ -103,20 +108,32 @@ void loop() {
     wifiState = 3;
   }
   else if (wifiState == 4) {
-      //Serial.println("fewuifuweeee");
-      Udp.beginPacket(bsip, 5005);
-      Udp.write("HND|-1|NEWDRONE");
-      Udp.endPacket();
-      wifiState = 5; 
-    }
-//   else if (state == 5) {
-//     //call parsemanualcontrolmessage and process the results
-//     //but do it in listen
-//     // Serial.println(roll);
-//     // Serial.println(yaw);
-//     // Serial.println(pitch);
-//     // Serial.println(throttle);
-//     }
+    Udp.beginPacket(bsip, 5005);
+    Udp.write("HND|-1|NEWDRONE");
+    Udp.endPacket();
+    wifiState = 5; 
+  }
+  if(millis() - updateTime > 5000)
+  {
+    Serial.println("<--------------------------->\nDrone Data");
+    Serial.print("Throttle: "); Serial.println(throttle);
+    Serial.print("Pitch: "); Serial.println(pitch);
+    Serial.print("Roll: "); Serial.println(roll);
+    Serial.print("Yaw: "); Serial.println(yaw);
+    Serial.print("Armed: "); Serial.println(isArmed);
+    Serial.print("Failsafe: "); Serial.println(isFailsafed);
+    Serial.print("Killswitch: "); Serial.println(isKilled);
+    Serial.println("<--------------------------->");
+    updateTime = millis();
+  }
+  // else if (state == 5) {
+  //   //call parsemanualcontrolmessage and process the results
+  //   //but do it in listen
+  //   // Serial.println(roll);
+  //   // Serial.println(yaw);
+  //   // Serial.println(pitch);
+  //   // Serial.println(throttle);
+  // }
 }//End Loop
 
 void DroneSystems(){
@@ -125,13 +142,13 @@ void DroneSystems(){
     throttle = 885;
     Arm(false);     
     DataSetSend();
-    if(millis() - t > 1000){ //sending init data for 10 seconds
+    if(millis() - t > 1000){
       t = millis();
       droneState = 0; //it's time to arm
     }
   }
   else if (droneState == 0){
-    compare = 100;
+    compare = 1000;
     //set arming signals
     Arm(true);
     DataSetSend();
@@ -146,8 +163,15 @@ void DroneSystems(){
   {
     //Roll Ch 0, pitch Ch 1, Yaw Ch 3, Throttle Ch 2, Arm Ch 4
     
-  } 
-  if(droneState == -1 || droneState == 0){ //Light Blinker
+  }
+  if(status != WL_CONNECTED) 
+  {
+    if(millis()- blinkTime >= compare){
+      LightSRLatch();
+      blinkTime = millis();
+    }
+  }
+  else if(droneState == -1 || droneState == 0){ //Light Blinker
     if(millis()- blinkTime >= compare){
       LightSRLatch();
       blinkTime = millis();
@@ -159,16 +183,40 @@ void DroneSystems(){
   else{
     digitalWrite(LEDpin,HIGH);
   }
+  if(arming > 1500)
+  {
+    isArmed = true;
+  }
+  else
+  {
+    isArmed = false;
+  }
+  if(failsafe > 1500)
+  {
+    isFailsafed = true;
+  }
+  else
+  {
+    isFailsafed = false;
+  }
+  if(killswitch > 1500)
+  {
+    isKilled = true;
+  }
+  else
+  {
+    isKilled = false;
+  }
   delay(10);  
 }//End Drone Systems
 
-void Arm(bool armmed)
+void Arm(bool armed)
 {
-  if(armmed)
+  if(armed)
   {
-    arming = 1800;
+    arming = 2000;
   }
-  else if(!armmed)
+  else if(!armed)
   {
     arming = 1000;
   }
@@ -198,6 +246,7 @@ void LightSRLatch()
 
 void WifiConnection()
 {
+  status = WiFi.status();
   // attempt to connect to Wi-Fi network:
   if(status != WL_CONNECTED && ((millis() - connectTime) > 5000)) {
     Serial.print("Attempting to connect to network: ");
