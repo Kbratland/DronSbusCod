@@ -18,7 +18,6 @@
 </details>
 
 <details>
-    
     <summary>Drone Building Instructions</summary>
     
     <details>
