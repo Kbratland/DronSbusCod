@@ -18,7 +18,7 @@
 </details>
 
 <details>
-    <summary>Drone Building Instructions
+    <summary>Drone Building Instructions and Parts List
     </summary>
     <details>
         <summary>Frame Construction</summary>
@@ -38,6 +38,20 @@
                 <summary>Configuration</summary>
                 <a href="https://github.com/Kbratland/DronSbusCod/blob/main/Configuration.md">Configuration Instructions</a>
             </details>
+    </details>
+    <details>
+        <summary>Parts Needed:</summary>
+        <a href="https://www.digikey.com/en/products/detail/jst-sales-america-inc/A08SR08SR30K203A/9922207">8-Pin JST Cable </a> -nl-
+        <a href="https://holybro.com/collections/autopilot-flight-controllers/products/kakute-f4-v2-4">Kakute F4 v2.4 Flight Controller</a> 
+        <a href="">BOTTOM TEXT</a>
+        <a href="">BOTTOM TEXT</a>
+        <a href="">BOTTOM TEXT</a>
+        <a href="">BOTTOM TEXT</a>
+        <a href="">BOTTOM TEXT</a>
+        <a href="">BOTTOM TEXT</a>
+        <a href="">BOTTOM TEXT</a>
+        <a href="">BOTTOM TEXT</a>
+        
     </details>
 </details>
 
