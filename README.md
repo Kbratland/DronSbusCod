@@ -32,6 +32,7 @@
         <summary>Code installation and Configuration</summary>
             <details>
                 <summary>Code</summary>
+                [Code Instructions}(https://github.com/Kbratland/DronSbusCod/blob/main/CodeInstall.md)
             </details>
             <details>
                 <summary>Configuration</summary>
