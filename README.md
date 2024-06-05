@@ -38,23 +38,17 @@
     </details>
 </details>
 
-<details>
-<summary> Year 1 (2021 - 2022) </summary>
-  
-  <details>
-  <summary> Refreshers </summary>
-  <ul>
-    <li> Algorithmics </li>
-    <li> Basic tools </li>
-  </ul>
-  </details>
 
-  <details>
-  <summary> Semester 1 </summary>
-  <ul>
-    <li> Data Visualization </li>
-    <li> Ethics </li>
-  </ul>
-  </details>
-  
-</details>
+<ul id="dropdown-menu">
+    <li>Menu 1
+        <ul class="submenu">
+            <li>Submenu 1-1
+                <ul class="submenu">
+                    <li>Sub-submenu 1-1-1</li>
+                </ul>
+            </li>
+            <li>Submenu 1-2</li>
+        </ul>
+    </li>
+    ...
+</ul>
