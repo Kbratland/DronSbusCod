@@ -32,7 +32,7 @@
         <summary>Code installation and Configuration</summary>
             <details>
                 <summary>Code</summary>
-             <a href="https://github.com/Kbratland/DronSbusCod/edit/main/README.md">link text</a>
+             <a href="https://github.com/Kbratland/DronSbusCod/blob/main/CodeInstall.md">Installation Instructions</a>
             </details>
             <details>
                 <summary>Configuration</summary>
