@@ -18,7 +18,9 @@
 </details>
 
 <details>
-    <summary>Drone Building Instructions</summary>
+    <summary>Drone Building Instructions
+    
+    </summary>
     <details>
         <summary>
             Frame Construction
