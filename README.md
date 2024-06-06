@@ -20,6 +20,7 @@
 <details>
     <summary>Drone Building Instructions and Parts List
     </summary>
+    <br>
     <details>
         <summary>Frame Construction</summary>
         <a href="https://github.com/Kbratland/DronSbusCod/blob/main/Instructions/FrameConstruction.md">Frame Instructions</a>
@@ -30,8 +31,8 @@
     </details>
     <details>
         <summary>Code installation and Configuration</summary>
+        <br>
             <details>
-                <br>
                 <summary>Code</summary>
              <a href="https://github.com/Kbratland/DronSbusCod/blob/main/Instructions/CodeInstall.md">Code Installation Instructions</a>
             </details>
