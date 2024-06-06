@@ -55,17 +55,3 @@
         -<a href="">BOTTOM TEXT</a> <br>
     </details>
 </details>
-<details>
-  <summary>SomeObject</summary>
-  <details>
-    <summary>SomeObject</summary>
-    <details>
-      <summary>SomeObject</summary>
-      <div>someField: 1</div>
-      <div>someOther: "abc"</div>
-    </details>
-    <div>someField: 1</div>
-    <div>someOther: "abc"</div>
-  </details>
-  <div>someField: [1,2,3]  </div>
-</details>
