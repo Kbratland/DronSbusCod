@@ -454,6 +454,10 @@ void Listen(){
       else if (wifiState == 5){
         //Serial.println("listening for manual message");
         ManualControlMessage msg = parseMessage(packetBuffer);
+        Serial.print("packet: ");
+        Serial.print(msg.throttle);
+        Serial.print(" recived at: ");
+        Serial.print(millis());
         if (msg.cmd == "MAN"){
           roll = msg.roll;
           pitch = msg.pitch;
