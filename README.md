@@ -34,7 +34,9 @@
         <a href="https://github.com/Kbratland/DronSbusCod/blob/main/Instructions/Wiring.md">Wiring Instructions</a>
     </details>
     <details>
-        <summary>Code installation and Configuration</summary>
+        <summary>
+            <b>Code installation and Configuration</b>
+        </summary>
         <br>
             <details>
                 <summary>
