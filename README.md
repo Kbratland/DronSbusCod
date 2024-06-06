@@ -21,6 +21,7 @@
     <summary>Drone Building Instructions and Parts List
     </summary>
     <br>
+    <p style="text-indent: 25px;">
     <details>
         <summary>Frame Construction</summary>
         <a href="https://github.com/Kbratland/DronSbusCod/blob/main/Instructions/FrameConstruction.md">Frame Instructions</a>
