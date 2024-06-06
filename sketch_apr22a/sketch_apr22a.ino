@@ -1,20 +1,19 @@
 #include <WiFiNINA.h>
 #include <WiFiUDP.h>
 #include "sbus.h"
-//please enter your sensitive data in the Secret tab
-char ssid[] = "XV_Basestation";                //  network SSID (name)
+
+char ssid[] = "XV_Basestation";          //  network SSID (name)
 int status = WL_IDLE_STATUS;             // the Wi-Fi radio's status
-int ledState = LOW;                       //ledState used to set the LED
-unsigned long previousMillisInfo = 0;     //will store last time Wi-Fi information was updated
-unsigned long previousMillisLED = 0;      // will store the last time LED was updated
-const int intervalInfo = 5000;            // interval at which to update the board information
-char packetBuffer[256]; //buffer to hold incoming packet
+int ledState = LOW;                      //ledState used to set the LED
+unsigned long previousMillisInfo = 0;    //will store last time Wi-Fi information was updated
+unsigned long previousMillisLED = 0;     // will store the last time LED was updated
+const int intervalInfo = 5000;           // interval at which to update the board information
+char packetBuffer[256];                  //buffer to hold incoming packet
 WiFiUDP Udp;
 unsigned int localPort = 2390;
 char  ReplyBuffer[] = "Drone 1";
-int wifiState = 0;
-bool bootComplete = false;
-bool firstConnectFrame = false;
+int wifiState = 0;                       //Wifi connection state
+bool firstConnectFrame = false;          //First Loop while connected to wifi
  
 //KONERRRRRR
 /* SBUS object, writing SBUS */
@@ -29,7 +28,6 @@ double throttle;
 int arming;
 int updateTime = 0;
 int connectTime = 0;
-bool enabled = false;
 long t = 0;
 bool isArmed = false;
 bool isFailsafed = false;
@@ -39,8 +37,11 @@ int droneState = -1;
 int killswitch = 1000;
 int failsafe = 1000;
 int LEDpin = 13;
-int compare = 10;
+int blinkSpeed = 10;
 bool lightOn = false;
+bool bootComplete = false;               //Finished Drone Booting sequence
+bool enabled = false;
+
 //KOOONNNEEER
 IPAddress bsip; //holds the base station ip address
 
@@ -57,13 +58,12 @@ struct ManualControlMessage{
 struct BSIPMessage{
   String cmd;
   IPAddress BSIP;
-  
 };
 
 void setup() {
   //Initialize serial and wait for port to open:
   Serial.begin(115200);
-  Serial.println("Testing.");
+  Serial.println("Setup");
   delay(1000);
   DataSetSend();
   delay(1000);
@@ -81,6 +81,7 @@ void loop() {
   status = WiFi.status();
   if(status != WL_CONNECTED)
   {  
+    blinkSpeed = 50;
     failsafe = 2000;
   }
   else
@@ -135,7 +136,7 @@ void loop() {
 
 void DroneSystems(){
   if (droneState == -1){//starting up
-    compare = 1000;       
+    blinkSpeed = 1000;       
     throttle = 885;
     Arm(false);     
     if(millis() - t > 1000){
@@ -144,7 +145,7 @@ void DroneSystems(){
     }
   }
   else if (droneState == 0){//arm drone
-    compare = 1000;
+    blinkSpeed = 1000;
     //set arming signals
     Arm(true);
     if (millis() - t > 500){
@@ -159,13 +160,13 @@ void DroneSystems(){
   }
   if(status != WL_CONNECTED) 
   {
-    if(millis()- blinkTime >= compare){
+    if(millis()- blinkTime >= blinkSpeed){
       LightSRLatch();
       blinkTime = millis();
     }
   }
   else if(droneState == -1 || droneState == 0){ //Light Blinker
-    if(millis()- blinkTime >= compare){
+    if(millis()- blinkTime >= blinkSpeed){
       LightSRLatch();
       blinkTime = millis();
     }
@@ -176,6 +177,23 @@ void DroneSystems(){
   else{
     digitalWrite(LEDpin,HIGH);
   }
+  CheckModeStates();
+  // delay(10);  
+}//End Drone Systems
+
+void Arm(bool armed)
+{
+  if(armed)
+  {
+    arming = 2000;
+  }
+  else if(!armed)
+  {
+    arming = 1000;
+  }
+}
+
+void CheckModeStates(){ //sets booleans of the modes for enabled/disabled
   if(arming > 1500)
   {
     isArmed = true;
@@ -199,19 +217,6 @@ void DroneSystems(){
   else
   {
     isKilled = false;
-  }
-  delay(10);  
-}//End Drone Systems
-
-void Arm(bool armed)
-{
-  if(armed)
-  {
-    arming = 2000;
-  }
-  else if(!armed)
-  {
-    arming = 1000;
   }
 }
 
@@ -290,15 +295,15 @@ void DataSetSend()
   sbus_tx.Write();
 }
 
-void sendMessage(char msg[]){
-   Udp.begin(localPort);
-    // Udp.beginPacket(Udp.remoteIP(), Udp.remotePort());
-    Udp.beginPacket("192.168.4.22", 80);
-    Udp.write(msg);
-    Udp.endPacket();
-    Serial.println("Sent");
-    Serial.println(msg);
-    Serial.println("**********");
+void SendMessage(char msg[]){
+  Udp.begin(localPort);
+  // Udp.beginPacket(Udp.remoteIP(), Udp.remotePort());
+  Udp.beginPacket("192.168.4.22", 80);
+  Udp.write(msg);
+  Udp.endPacket();
+  Serial.println("Sent");
+  Serial.println(msg);
+  Serial.println("**********");
 }
 
 void printBoardInfo(){
