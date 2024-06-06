@@ -15,7 +15,6 @@ char  ReplyBuffer[] = "Drone 1";
 int wifiState = 0;
 bool bootComplete = false;
 bool firstConnectFrame = false;
-bool wifiLostConnection = false;
  
 //KONERRRRRR
 /* SBUS object, writing SBUS */
@@ -64,8 +63,11 @@ struct BSIPMessage{
 
 void setup() {
   //Initialize serial and wait for port to open:
-  Serial.begin(9600);
+  Serial.begin(115200);
   Serial.println("Testing.");
+  delay(1000);
+  DataSetSend();
+  delay(1000);
   // set the LED as output
   pinMode(LED_BUILTIN, OUTPUT);
   sbus_tx.Begin();
@@ -77,13 +79,9 @@ void setup() {
 }//end setup
 
 void loop() {
-  if(WiFi.status() == WL_CONNECTION_LOST)
-  {
-    wifiState = 1;
-    wifiLostConnection = true;
-  }
-  if(wifiLostConnection)
-  {
+  status = WiFi.status();
+  if(status != WL_CONNECTED)
+  {  
     failsafe = 2000;
   }
   else
@@ -91,11 +89,11 @@ void loop() {
     failsafe = 1000;
   }
   //MillisStuff();
-  WifiConnection();
+  WifiConnection();//checks the wi-fi status
   Listen();
   DroneSystems();
   DataSetSend();
-  if (wifiState == 1 && droneState == 1){
+  if (wifiState == 1 && droneState == 1 && status == WL_CONNECTED){
     Udp.beginPacket(Udp.remoteIP(), Udp.remotePort());
     Udp.write("State: 1 -> 2");
     Udp.endPacket();
@@ -137,21 +135,19 @@ void loop() {
 }//End Loop
 
 void DroneSystems(){
-  if (droneState == -1){
+  if (droneState == -1){//starting up
     compare = 1000;       
     throttle = 885;
     Arm(false);     
-    DataSetSend();
     if(millis() - t > 1000){
       t = millis();
       droneState = 0; //it's time to arm
     }
   }
-  else if (droneState == 0){
+  else if (droneState == 0){//arm drone
     compare = 1000;
     //set arming signals
     Arm(true);
-    DataSetSend();
     if (millis() - t > 500){
       rampUpTime = millis();
       //throttle = 900;
@@ -159,7 +155,7 @@ void DroneSystems(){
       t = millis();
     }
   }
-  else if (droneState == 1)
+  else if (droneState == 1) //nothing
   {
     //Roll Ch 0, pitch Ch 1, Yaw Ch 3, Throttle Ch 2, Arm Ch 4
     
@@ -246,7 +242,6 @@ void LightSRLatch()
 
 void WifiConnection()
 {
-  status = WiFi.status();
   // attempt to connect to Wi-Fi network:
   if(status != WL_CONNECTED && ((millis() - connectTime) > 5000)) {
     Serial.print("Attempting to connect to network: ");
@@ -272,7 +267,6 @@ void WifiConnection()
     // you're connected now, so print out the data:
     printBoardInfo();
     firstConnectFrame = false;
-    wifiLostConnection = false;
     bootComplete = true;
   }
 }
@@ -284,9 +278,17 @@ void DataSetSend()
   data.ch[2] = (ChannelMath(throttle));
   data.ch[3] = (ChannelMath(yaw));
   data.ch[4] = (ChannelMath(arming));
+  data.ch[5] = (ChannelMath(1500));
+  data.ch[6] = (ChannelMath(1500));
   data.ch[7] = (ChannelMath(failsafe));
-  data.ch[10] = (ChannelMath(2000)); //RSSI (Signal Strenght)
+  data.ch[8] = (ChannelMath(1500));
+  data.ch[9] = (ChannelMath(1500));
+  data.ch[10] = (ChannelMath(2000));
+  data.ch[11] = (ChannelMath(1500)); //RSSI (Signal Strenght)
   data.ch[12] = (ChannelMath(killswitch)); //Killswitch
+  data.ch[13] = (ChannelMath(1500));
+  data.ch[14] = (ChannelMath(1500));
+  data.ch[15] = (ChannelMath(1500));
   sbus_tx.data(data);
   sbus_tx.Write();
 }
