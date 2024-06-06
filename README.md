@@ -22,21 +22,21 @@
     </summary>
     <details>
         <summary>Frame Construction</summary>
-        <a href="https://github.com/Kbratland/DronSbusCod/blob/main/FrameConstruction.md">Frame Instructions</a>
+        <a href="https://github.com/Kbratland/DronSbusCod/blob/main/Instructions/FrameConstruction.md">Frame Instructions</a>
     </details>
     <details>
         <summary>Wiring!</summary>
-        <a href="https://github.com/Kbratland/DronSbusCod/blob/main/Wiring.md">Wiring Instructions</a>
+        <a href="https://github.com/Kbratland/DronSbusCod/blob/main/Instructions/Wiring.md">Wiring Instructions</a>
     </details>
     <details>
         <summary>Code installation and Configuration</summary>
             <details>
                 <summary>Code</summary>
-             <a href="https://github.com/Kbratland/DronSbusCod/blob/main/CodeInstall.md">Code Installation Instructions</a>
+             <a href="https://github.com/Kbratland/DronSbusCod/blob/main/Instructions/CodeInstall.md">Code Installation Instructions</a>
             </details>
             <details>
                 <summary>Configuration</summary>
-                <a href="https://github.com/Kbratland/DronSbusCod/blob/main/Configuration.md">Configuration Instructions</a>
+                <a href="https://github.com/Kbratland/DronSbusCod/blob/main/Instructions/Configuration.md">Configuration Instructions</a>
             </details>
     </details>
     <details>
