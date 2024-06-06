@@ -37,7 +37,6 @@
         <summary>
             <b>Code installation and Configuration</b>
         </summary>
-        <br>
             <details>
                 <summary>
                        Code
