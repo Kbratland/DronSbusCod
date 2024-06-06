@@ -1,6 +1,6 @@
 #include <WiFiNINA.h>
-#include <WiFiUDP.h>
-#include "sbus.h"
+#include <WiFiUDP.h>                     //https://github.com/arduino-libraries/WiFi
+#include "sbus.h"                        //https://github.com/bolderflight/SBUS
 
 char ssid[] = "XV_Basestation";          //  network SSID (name)
 int status = WL_IDLE_STATUS;             // the Wi-Fi radio's status
