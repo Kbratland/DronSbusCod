@@ -22,7 +22,7 @@
     </summary>
     <br>
     <details style="margin-left: 25px;">
-        <summary><p margin-left: 2em>Frame Construction</p></summary>
+        <summary><p "margin-left: 25px;">Frame Construction</p></summary>
         <a href="https://github.com/Kbratland/DronSbusCod/blob/main/Instructions/FrameConstruction.md">Frame Instructions</a>
     </details>
     <details>
