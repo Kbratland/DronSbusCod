@@ -41,7 +41,6 @@ int failsafe = 1000;
 int LEDpin = 13;
 int compare = 10;
 bool lightOn = false;
-int rampUpTime = 0;
 //KOOONNNEEER
 IPAddress bsip; //holds the base station ip address
 
@@ -74,7 +73,7 @@ void setup() {
   roll = 1500;
   pitch = 1500;
   yaw = 1500;
-  throttle = 880;
+  throttle = 885;
   WifiConnection();
 }//end setup
 
@@ -141,7 +140,7 @@ void DroneSystems(){
     Arm(false);     
     if(millis() - t > 1000){
       t = millis();
-      droneState = 0; //it's time to arm
+      droneState = 0;
     }
   }
   else if (droneState == 0){//arm drone
@@ -149,9 +148,7 @@ void DroneSystems(){
     //set arming signals
     Arm(true);
     if (millis() - t > 500){
-      rampUpTime = millis();
-      //throttle = 900;
-      droneState = 1; // 1 is intstant, 2 is slow incraments of 50
+      droneState = 1;
       t = millis();
     }
   }
@@ -357,56 +354,56 @@ void MillisStuff() { //specifies whatever this stuff is for use in the loop, to 
   }
 }
 
- ManualControlMessage parseMessage(char buffer[]){
-    ManualControlMessage msg;
-    char *token;
-    token = strtok(buffer, "|");
-    int i = 0;
-    while (token != 0){
-      //Serial.println(token);
-      switch(i){
-        case 0:
-          msg.cmd = token;
-          break;
-        case 1:
-          msg.sourceIP = token;
-          break;
-        case 2:
-          msg.yaw = atoi(token);       
-          break;
-        case 3:
-          msg.pitch = atoi(token);  //pitch
-          break;
-        case 4: 
-          msg.roll = atoi(token);
-          break;
-        case 5:
-          msg.throttle = atoi(token);
-          break;
-        case 6:
-          msg.killswitch = atoi(token);
-          break;
-        }
-        roll = msg.roll;
-        pitch = msg.pitch;
-        throttle = msg.throttle;
-        yaw = msg.yaw;
-        killswitch = msg.killswitch;
-      i++;
-      token = strtok(NULL, "|");
-      
-    }
-  return msg;  
- //HAS REQUIRED PACKETS FROM LISTEN, CODE FOR MANUAL MODE HERE --------------
-  //Currently does not include a break, repeats loop forever
-  }  
+ManualControlMessage parseMessage(char buffer[]){
+  ManualControlMessage msg;
+  char *token;
+  token = strtok(buffer, "|");
+  int i = 0;
+  while(token != 0){
+    //Serial.println(token);
+    switch(i){
+      case 0:
+        msg.cmd = token;
+        break;
+      case 1:
+        msg.sourceIP = token;
+        break;
+      case 2:
+        msg.yaw = atoi(token);       
+        break;
+      case 3:
+        msg.pitch = atoi(token);  //pitch
+        break;
+      case 4: 
+        msg.roll = atoi(token);
+        break;
+      case 5:
+        msg.throttle = atoi(token);
+        break;
+      case 6:
+        msg.killswitch = atoi(token);
+        break;
+      }
+      roll = msg.roll;
+      pitch = msg.pitch;
+      throttle = msg.throttle;
+      yaw = msg.yaw;
+      killswitch = msg.killswitch;
+    i++;
+    token = strtok(NULL, "|"); 
+  }
+return msg;  
+//HAS REQUIRED PACKETS FROM LISTEN, CODE FOR MANUAL MODE HERE --------------
+//Currently does not include a break, repeats loop forever
+}  
+
 BSIPMessage parseBSIP(char buffer[]){
   BSIPMessage msg;
   char *token;
   token = strtok(buffer, "|");
   int i = 0;
   Serial.println("In parseBSIP");
-  while (token != 0){
+  while(token != 0){
     Serial.println(token);
     switch(i){
       case 0:
@@ -425,56 +422,39 @@ BSIPMessage parseBSIP(char buffer[]){
 
 void Listen(){
   int packetSize = Udp.parsePacket();
-
-  if (packetSize) {
-
+  if(packetSize){
     //Serial.print("Received packet of size ");
-
     //Serial.println(packetSize);
-
     //Serial.print("From ");
-
     IPAddress remoteIp = Udp.remoteIP();
-
     //Serial.print(remoteIp);
-
     //Serial.print(", port ");
-
     //Serial.println(Udp.remotePort());
-
     // read the packet into packetBufffer
-
     int len = Udp.read(packetBuffer, 255);
-
     //Serial.println(packetBuffer);
-
     if (len > 0) {
-
       packetBuffer[len] = 0;
       if (wifiState == 3){
-            Serial.println("Parsing BSIP Message");
-              //read BSID response from AP      
-            BSIPMessage msg = parseBSIP(packetBuffer);
-            if (msg.cmd == "BSIP"){
-              bsip = msg.BSIP;
-              Serial.print("Base Station IP: ");
-              Serial.println(bsip);
-              wifiState = 4;
-            }
-    }
+        Serial.println("Parsing BSIP Message");
+        //read BSID response from AP      
+        BSIPMessage msg = parseBSIP(packetBuffer);
+        if (msg.cmd == "BSIP"){
+          bsip = msg.BSIP;
+          Serial.print("Base Station IP: ");
+          Serial.println(bsip);
+          wifiState = 4;
+        }
+      }
       else if (wifiState == 5){
         //Serial.println("listening for manual message");
         ManualControlMessage msg = parseMessage(packetBuffer);
         if (msg.cmd == "MAN"){
-
           roll = msg.roll;
           pitch = msg.pitch;
           throttle = msg.throttle;
           yaw = msg.yaw;
-          
-
         }
-
       }
     }    
   }
