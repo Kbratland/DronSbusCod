@@ -18,26 +18,35 @@
 </details>
 
 <details>
-    <summary>Drone Building Instructions and Parts List
+    <summary>
+        Drone Building Instructions and Parts List
     </summary>
     <br>
     <details>
-        <summary>Frame Construction</summary>
+        <summary>
+            <b>Frame Construction</b>
+        </summary>
         <a href="https://github.com/Kbratland/DronSbusCod/blob/main/Instructions/FrameConstruction.md">Frame Instructions</a>
     </details>
     <details>
-        <summary>Wiring!</summary>
+        <summary>
+            Wiring!
+        </summary>
         <a href="https://github.com/Kbratland/DronSbusCod/blob/main/Instructions/Wiring.md">Wiring Instructions</a>
     </details>
     <details>
         <summary>Code installation and Configuration</summary>
         <br>
             <details>
-                <summary>Code</summary>
+                <summary>
+                    Code
+                </summary>
              <a href="https://github.com/Kbratland/DronSbusCod/blob/main/Instructions/CodeInstall.md">Code Installation Instructions</a>
             </details>
             <details>
-                <summary>Configuration</summary>
+                <summary>
+                    Configuration
+                </summary>
                 <a href="https://github.com/Kbratland/DronSbusCod/blob/main/Instructions/Configuration.md">Configuration Instructions</a>
             </details>
     </details>
