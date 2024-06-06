@@ -1,5 +1,5 @@
 {
     "board": "arduino:samd:nano_33_iot",
-    "port": "COM5",
-    "sketch": "Arduino Drone Control\\ArduinoDroneControl.ino"
+    "sketch": "ArduinoDroneControl\\ArduinoDroneControl.ino",
+    "port": "COM3"
 }
