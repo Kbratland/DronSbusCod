@@ -34,7 +34,7 @@
         <br>
             <details>
                 <summary>Code</summary>
-             ---<a href="https://github.com/Kbratland/DronSbusCod/blob/main/Instructions/CodeInstall.md">Code Installation Instructions</a>
+             --- <a href="https://github.com/Kbratland/DronSbusCod/blob/main/Instructions/CodeInstall.md">Code Installation Instructions</a>
             </details>
             <details>
                 <summary>Configuration</summary>
