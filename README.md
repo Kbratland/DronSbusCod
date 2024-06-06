@@ -23,7 +23,7 @@
     <be><p style="text-indent: 25px;">
     <dt><details>
         <summary>Frame Construction</summary>
-        <a href="https://github.com/Kbratland/DronSbusCod/blob/main/Instructions/FrameConstruction.md">Frame Instructions</a>
+        <dl><a href="https://github.com/Kbratland/DronSbusCod/blob/main/Instructions/FrameConstruction.md">Frame Instructions</a></dl>
     </details></dt>
     <details>
         <summary>Wiring!</summary>
