@@ -64,7 +64,7 @@
         -<a href="https://betafpv.com/products/hq-3030-2-blade-propellers-1-5-shaft-16-pcs?variant=29700573528108">16x 3-Blade Propellers</a> <br>
         -<a href="https://store-usa.arduino.cc/products/arduino-nano-33-iot">Arduino Nano 33 IOT</a> <br>
         -<a href="https://store.arduino.cc/products/nodemcu-esp8266">NodeMCU ESP8266</a> <br>
-        <p>Screw and insert types below, feel free to use different than the link provides</p>
+        <br><p>Screw and insert types below, feel free to use different than the link provides</p>
         -<a href="https://www.amazon.com/gp/product/B07TTQXVQH/ref=ox_sc_act_title_1?smid=A19TVI3M6WFVG7&th=1">M1.6 Brass Screw Insert</a> <br>
         -<a href="https://www.amazon.com/M1-6x4mm-0-35mm-Pitch-Socket-100pcs/dp/B00XP4ZWY2/ref=sr_1_13?crid=H5KH0H4M0INP&keywords=m1.6+screws&qid=1704831251&s=hi&sprefix=m1.6+screws%2Ctools%2C123&sr=1-13">M1.6 .35mm Screw</a> <br>
         -<a href="https://www.amazon.com/initeq-M3-0-5-Threaded-Inserts-Printing/dp/B077CJV3Z9?th=1">M3 Brass Screw Insert</a> <br>
