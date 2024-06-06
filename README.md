@@ -21,10 +21,10 @@
     <summary>Drone Building Instructions and Parts List
     </summary>
     <be><p style="text-indent: 25px;">
-    <details>
+    <dl><details>
         <summary>Frame Construction</summary>
         <a href="https://github.com/Kbratland/DronSbusCod/blob/main/Instructions/FrameConstruction.md">Frame Instructions</a>
-    </details>
+    </details></dl>
     <details>
         <summary>Wiring!</summary>
         <a href="https://github.com/Kbratland/DronSbusCod/blob/main/Instructions/Wiring.md">Wiring Instructions</a>
