@@ -16,7 +16,9 @@
     - Request Fria 
 
 </details>
-
+details > *:not(summary){
+  margin-left: 2em;
+}
 <details>
     <summary>Drone Building Instructions and Parts List
     </summary>
