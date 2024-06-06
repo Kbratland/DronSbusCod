@@ -19,7 +19,7 @@
 
 <details>
     <summary>
-        Drone Building Instructions and Parts List
+        <h1>Drone Building Instructions and Parts List</h1>
     </summary>
     <br>
     <details>
@@ -30,7 +30,7 @@
     </details>
     <details>
         <summary>
-            Wiring!
+            <b>Wiring!</b>
         </summary>
         <a href="https://github.com/Kbratland/DronSbusCod/blob/main/Instructions/Wiring.md">Wiring Instructions</a>
     </details>
@@ -39,7 +39,7 @@
         <br>
             <details>
                 <summary>
-                    Code
+                       Code
                 </summary>
              <a href="https://github.com/Kbratland/DronSbusCod/blob/main/Instructions/CodeInstall.md">Code Installation Instructions</a>
             </details>
@@ -51,7 +51,9 @@
             </details>
     </details>
     <details>
-        <summary>Parts Needed:</summary>
+        <summary>
+            <b>Parts Needed:</b>
+        </summary>
         -<a href="https://www.digikey.com/en/products/detail/jst-sales-america-inc/A08SR08SR30K203A/9922207">8-Pin JST Cable </a> <br>
         -<a href="https://holybro.com/collections/autopilot-flight-controllers/products/kakute-f4-v2-4">Kakute F4 v2.4 Flight Controller</a> <br>
         -<a href="https://holybro.com/collections/motors/products/ripper-1404-3800kv-ultralight-brushless-motor?variant=41563378679997">Ripper Motor Four-pack</a> <br>
