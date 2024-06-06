@@ -19,7 +19,7 @@
 
 <details>
     <summary>
-        <h6>Drone Building Instructions and Parts List</h6>
+        <h3>Drone Building Instructions and Parts List</h3>
     </summary>
     <br>
     <details>
