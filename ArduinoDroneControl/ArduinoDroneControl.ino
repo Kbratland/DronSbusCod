@@ -277,7 +277,10 @@ void WifiConnection()
     Udp.write(ReplyBuffer);
     Udp.endPacket();
     // you're connected now, so print out the data:
-    printBoardInfo();
+    if(serialUSB)
+    {
+      printBoardInfo();
+    }
     firstConnectFrame = false;
     bootComplete = true;
   }
