@@ -14,7 +14,7 @@ char ReplyBuffer[256] = "reply";       // a string to send back
 
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
   Serial.println();
 
   Serial.print("Setting soft-AP configuration ... ");

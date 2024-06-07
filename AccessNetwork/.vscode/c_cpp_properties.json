@@ -2,23 +2,6 @@
     "version": 4,
     "configurations": [
         {
-            "name": "Win32",
-            "compilerPath": "cl.exe",
-            "compilerArgs": [],
-            "intelliSenseMode": "windows-msvc-x64",
-            "includePath": [
-                "${workspaceFolder}/**"
-            ],
-            "forcedInclude": [],
-            "cStandard": "c17",
-            "cppStandard": "c++17",
-            "defines": [
-                "_DEBUG",
-                "UNICODE",
-                "_UNICODE"
-            ]
-        },
-        {
             "name": "Arduino",
             "compilerPath": "C:\\Users\\bjorn\\AppData\\Local\\Arduino15\\packages\\esp8266\\tools\\xtensa-lx106-elf-gcc\\3.1.0-gcc10.3-e5f9fec\\bin\\xtensa-lx106-elf-g++",
             "compilerArgs": [
@@ -36,12 +19,10 @@
             "includePath": [
                 "C:\\Users\\bjorn\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\3.1.2\\tools\\sdk\\include",
                 "C:\\Users\\bjorn\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\3.1.2\\tools\\sdk\\lwip2\\include",
-                "C:\\Users\\bjorn\\AppData\\Local\\Temp\\arduino\\sketches\\406260E68608311E3340D62CF3A341E7\\core",
+                "C:\\Users\\bjorn\\AppData\\Local\\Temp\\arduino\\sketches\\D37BD586D6ED47C19EDAE0F76ECB160C\\core",
                 "C:\\Users\\bjorn\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\3.1.2\\cores\\esp8266",
                 "C:\\Users\\bjorn\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\3.1.2\\variants\\nodemcu",
-                "C:\\Users\\bjorn\\Documents\\Arduino\\libraries\\WiFiNINA\\src",
-                "C:\\Users\\bjorn\\Documents\\Arduino\\libraries\\Bolder_Flight_Systems_SBUS\\src",
-                "C:\\Users\\bjorn\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\3.1.2\\libraries\\SPI",
+                "C:\\Users\\bjorn\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\3.1.2\\libraries\\ESP8266WiFi\\src",
                 "c:\\users\\bjorn\\appdata\\local\\arduino15\\packages\\esp8266\\tools\\xtensa-lx106-elf-gcc\\3.1.0-gcc10.3-e5f9fec\\xtensa-lx106-elf\\include\\c++\\10.3.0",
                 "c:\\users\\bjorn\\appdata\\local\\arduino15\\packages\\esp8266\\tools\\xtensa-lx106-elf-gcc\\3.1.0-gcc10.3-e5f9fec\\xtensa-lx106-elf\\include\\c++\\10.3.0\\xtensa-lx106-elf",
                 "c:\\users\\bjorn\\appdata\\local\\arduino15\\packages\\esp8266\\tools\\xtensa-lx106-elf-gcc\\3.1.0-gcc10.3-e5f9fec\\xtensa-lx106-elf\\include\\c++\\10.3.0\\backward",
