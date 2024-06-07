@@ -14,6 +14,7 @@ unsigned int localPort = 2390;
 char  ReplyBuffer[] = "Drone 1";
 int wifiState = 0;                       //Wifi connection state
 bool firstConnectFrame = false;          //First Loop while connected to wifi
+float pytime = 0;                        //time of python code
  
 //KONERRRRRR
 /* SBUS object, writing SBUS */
@@ -388,12 +389,15 @@ ManualControlMessage parseMessage(char buffer[]){
       case 6:
         msg.killswitch = atoi(token);
         break;
+      case 7:
+        msg.pytime = atoi(token);
       }
       roll = msg.roll;
       pitch = msg.pitch;
       throttle = msg.throttle;
       yaw = msg.yaw;
       killswitch = msg.killswitch;
+      pytime = msg.pytime;
     i++;
     token = strtok(NULL, "|"); 
   }
