@@ -15,6 +15,8 @@ char  ReplyBuffer[] = "Drone 1";
 int wifiState = 0;                       //Wifi connection state
 bool firstConnectFrame = false;          //First Loop while connected to wifi
 double pytime = 0;                        //time of python code
+
+bool serialUSB = false;
  
 //KONERRRRRR
 /* SBUS object, writing SBUS */
@@ -65,7 +67,11 @@ struct BSIPMessage{
 void setup() {
   //Initialize serial and wait for port to open:
   Serial.begin(115200);
-  Serial.println("Setup");
+  if(Serial)
+  {
+    serialUSB = true;
+    Serial.println("Setup");
+  }
   delay(1000);
   DataSetSend();
   delay(1000);
@@ -113,7 +119,7 @@ void loop() {
     Udp.endPacket();
     wifiState = 5; 
   }
-  if(millis() - updateTime > 5000)
+  if(millis() - updateTime > 5000 && serialUSB)
   {
     Serial.println("<--------------------------->\nDrone Data");
     Serial.print("Throttle: "); Serial.println(throttle);
@@ -248,7 +254,10 @@ void WifiConnection()
 {
   // attempt to connect to Wi-Fi network:
   if(status != WL_CONNECTED && ((millis() - connectTime) > 5000)) {
-    Serial.print("Attempting to connect to network: ");
+    if(serialUSB)
+    {
+      Serial.print("Attempting to connect to network: ");
+    }
     Serial.println(ssid);
     // Connect to WPA/WPA2 network:
     status = WiFi.begin(ssid);
