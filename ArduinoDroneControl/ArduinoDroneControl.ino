@@ -228,10 +228,9 @@ void CheckModeStates(){ //sets booleans of the modes for enabled/disabled
   }
 }
 
-int ChannelMath(double setpoint)
+int ChannelMath(double setpoint) //Math to set the same values as used in inav veiwer, < 0.0001% stray
 {
-  //channel limits assume setpoint between 1000 - 2000
-  //throttle can go as low as 885
+  //channel limits assume setpoint between 900 - 2100
   setpoint = (setpoint - 879.7)/.6251;
   return round(setpoint);  
 }
@@ -284,7 +283,7 @@ void WifiConnection()
   }
 }
 
-void DataSetSend()
+void DataSetSend() //Sends data over sbus
 {
   data.ch[0] = (ChannelMath(roll));
   data.ch[1] = (ChannelMath(pitch)); 
@@ -469,10 +468,13 @@ void Listen(){
       else if (wifiState == 5){
         //Serial.println("listening for manual message");
         ManualControlMessage msg = parseMessage(packetBuffer);
-        Serial.print("packet: ");
-        Serial.print(msg.throttle);
-        Serial.print(" recived at: ");
-        Serial.print(millis());
+        if(serialUSB)
+        {
+          Serial.print("packet: ");
+          Serial.print(msg.throttle);
+          Serial.print(" recived at: ");
+          Serial.print(millis());
+        }
         if (msg.cmd == "MAN"){
           roll = msg.roll;
           pitch = msg.pitch;
