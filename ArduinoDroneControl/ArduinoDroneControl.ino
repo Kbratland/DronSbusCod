@@ -166,6 +166,11 @@ void DroneSystems(){
     //Roll Ch 0, pitch Ch 1, Yaw Ch 3, Throttle Ch 2, Arm Ch 4
     
   }
+  else if(droneState == 2)
+  {
+    
+    
+  }
   if(status != WL_CONNECTED) 
   {
     if(millis()- blinkTime >= blinkSpeed){
