@@ -1,4 +1,6 @@
-#include <MSP.h>
+#include <WiFiNINA.h>                    //https://github.com/arduino-libraries/WiFiNINA/tree/master
+#include <WiFiUDP.h>                     
+#include <MSP.h>                         //https://github.com/yajo10/MSP-Arduino
 
 MSP msp;
 
