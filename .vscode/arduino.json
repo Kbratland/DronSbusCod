@@ -1,5 +1,5 @@
 {
     "board": "arduino:samd:nano_33_iot",
     "port": "COM5",
-    "sketch": "MSPControl\\ArduinoMSP.ino"
+    "sketch": "ArduinoMSP\\ArduinoMSP.ino"
 }

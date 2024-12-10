@@ -5,12 +5,13 @@
             "name": "Win32",
             "compilerPath": "",
             "compilerArgs": [],
-            "intelliSenseMode": "",
+            "intelliSenseMode": "windows-msvc-x64",
             "includePath": [
                 "${workspaceFolder}/**",
                 "C:\\Users\\bjorn\\AppData\\Local\\Arduino15\\libraries/**",
                 "C:\\Users\\bjorn\\AppData\\Local\\Arduino15\\libraries\\iBus-master/**",
-                "C:\\Users\\bjorn\\AppData\\Local\\Arduino15\\libraries\\MSP-Arduino-master/**"
+                "C:\\Users\\bjorn\\AppData\\Local\\Arduino15\\libraries\\MSP-Arduino-master/**",
+                "C:\\Users\\bjorn\\AppData\\Local\\Arduino15\\libraries\\MSP-Arduino-master"
             ],
             "forcedInclude": [],
             "cStandard": "",
@@ -45,9 +46,7 @@
                 "C:\\Users\\bjorn\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\samd\\1.8.14\\cores\\arduino\\api\\deprecated-avr-comp",
                 "C:\\Users\\bjorn\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\samd\\1.8.14\\cores\\arduino",
                 "C:\\Users\\bjorn\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\samd\\1.8.14\\variants\\nano_33_iot",
-                "C:\\Users\\bjorn\\Documents\\Arduino\\libraries\\WiFiNINA\\src",
-                "C:\\Users\\bjorn\\Documents\\Arduino\\libraries\\Bolder_Flight_Systems_SBUS\\src",
-                "C:\\Users\\bjorn\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\samd\\1.8.14\\libraries\\SPI",
+                "C:\\Users\\bjorn\\Documents\\Arduino\\libraries\\MSP-Arduino-master",
                 "c:\\users\\bjorn\\appdata\\local\\arduino15\\packages\\arduino\\tools\\arm-none-eabi-gcc\\7-2017q4\\arm-none-eabi\\include\\c++\\7.2.1",
                 "c:\\users\\bjorn\\appdata\\local\\arduino15\\packages\\arduino\\tools\\arm-none-eabi-gcc\\7-2017q4\\arm-none-eabi\\include\\c++\\7.2.1\\arm-none-eabi",
                 "c:\\users\\bjorn\\appdata\\local\\arduino15\\packages\\arduino\\tools\\arm-none-eabi-gcc\\7-2017q4\\arm-none-eabi\\include\\c++\\7.2.1\\backward",

@@ -16,7 +16,7 @@ void loop()
     uint16_t roll     = rc.channelValue[0];
     uint16_t pitch    = rc.channelValue[1];
     uint16_t yaw      = rc.channelValue[2];
-    uint16_t throttle = rc.channelValue[3];
-    
+    uint16_t throttle = rc.channelValue[3]; 
   }
+  msp.send(MSP_SET_RAW_RC, &rc, sizeof(rc));
 }
