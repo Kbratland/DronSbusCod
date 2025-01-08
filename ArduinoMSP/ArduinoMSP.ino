@@ -1,11 +1,17 @@
 #define MSP_ATTITUDE 108
 #define MSP_SET_RAW_RC 200
 #define MSP_RAW_GPS 106
+#define MSP_WP 118
+#define MSP_SET_WP 209
 
 uint16_t rc_values[8];
-int loopCount = 0;
+long start;
+bool light;
+
 
 void setup() {
+  pinMode(13, OUTPUT);
+  start = millis();
   delay(250);
   Serial1.begin(9600);
   Serial.begin(9600);
@@ -20,20 +26,27 @@ void setup() {
 }
 
 void loop() {
-  loopCount++;
+  if((millis()-start) > 1000)
+  {
+    if(light)
+    {
+      digitalWrite(13, HIGH); 
+      light = false;
+    }
+    else
+    {
+      digitalWrite(13, LOW); 
+      light = true;
+    }
+    start = millis();
+  }
   uint8_t datad = 0;
   uint8_t *data = &datad;
-  if(loopCount%2 == 0)
-  {
-    commandMSP(MSP_SET_RAW_RC, rc_values, 16);
-  }
-  else
-  {
-    sendMSP(MSP_RAW_GPS, 0, 0);
-    readGPSData();
-    sendMSP(MSP_ATTITUDE, data, 0);
-    readAttitudeData();
-  }
+  // commandMSP(MSP_SET_RAW_RC, rc_values, 16);
+  sendMSP(MSP_RAW_GPS, 0, 0);
+  readGPSData();
+  // sendMSP(MSP_ATTITUDE, data, 0);
+  // readAttitudeData();
 }
 
 void commandMSP(uint8_t cmd, uint16_t data[], uint8_t n_cbytes)
@@ -93,31 +106,31 @@ void readAttitudeData() {
     byte second;
     switch (count) {
       //first five bytes are header-type informatin, so start at 6
-    case 1 ... 2:
+    case 1 ... 5:
       Serial1.read();
       break;
-    case 3:
+    case 6:
       first = Serial1.read();
       second = Serial1.read();
       rollRec = second;
       rollRec <<= 8;
       rollRec += first;
       break;
-    case 4:
+    case 7:
       first = Serial1.read();
       second = Serial1.read();
       pitchRec = second;
       pitchRec <<= 8;
       pitchRec += first;
       break;  
-    case 5:
+    case 8:
       first = Serial1.read();
       second = Serial1.read();
       yawRec = second;
       yawRec <<= 8;
       yawRec += first;
       break;
-    case 6:
+    case 9:
       Serial1.read();
       break;
     }
@@ -146,16 +159,16 @@ void readGPSData()
     byte fourth;
     switch (count) {
       //first five bytes are header-type informatin, so start at 6
-    case 1 ... 2:
+    case 1 ... 5:
       Serial1.read();
       break;
-    case 3: //Fix, 1 is yes, 0 is no
+    case 6: //Fix, 1 is yes, 0 is no
       gpsFix = Serial1.read();
       break;
-    case 4: //Number of satellites
+    case 7: //Number of satellites
       numSat = Serial1.read();
       break;  
-    case 5: //Combine latitude bytes
+    case 8: //Combine latitude bytes
       first = Serial1.read();
       second = Serial1.read();
       third = Serial1.read();
@@ -168,7 +181,7 @@ void readGPSData()
       lat <<= 8;
       lat += first;
       break;
-    case 6: //Combine longitude bytes
+    case 9: //Combine longitude bytes
       first = Serial1.read();
       second = Serial1.read();
       third = Serial1.read();
@@ -181,37 +194,37 @@ void readGPSData()
       lon <<= 8;
       lon += first;
       break;
-    case 7: //Altitude in meters
+    case 10: //Altitude in meters
       first = Serial1.read();
       second = Serial1.read();
       gpsAlt = second;
       gpsAlt <<= 8;
       gpsAlt += first;
       break;
-    case 8: //Speed in cm/s
+    case 11: //Speed in cm/s
       first = Serial1.read();
       second = Serial1.read();
       gpsSpeed = second;
       gpsSpeed <<= 8;
       gpsSpeed += first;
       break;
-    case 9: //Degrees times 10
+    case 12: //Degrees times 10
       first = Serial1.read();
       second = Serial1.read();
       gpsCourse = second;
       gpsCourse <<= 8;
       gpsCourse += first;
       break;
-    case 10:
+    case 13:
       Serial1.read();
       break;
     }
   }
   Serial.print("Fix: " + String(gpsFix));
   Serial.print(" NumSat: " + String(numSat));
-  Serial.print(" Lat: " + String(lat/10000000));
-  Serial.print(" Lon: " + String(lon/10000000));
+  Serial.print(" Lat: " + String(lat/10000000.0, 5));
+  Serial.print(" Lon: " + String(lon/10000000.0, 5));
   Serial.print(" GPSALT: " + String(gpsAlt));
   Serial.print(" SOG: " + String(gpsSpeed));
-  Serial.println(" GPSCourse: " + String(gpsCourse/10));
+  Serial.println(" GPSCourse: " + String(gpsCourse/10.0));
 }
